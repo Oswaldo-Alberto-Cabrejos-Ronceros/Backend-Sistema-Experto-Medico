@@ -1,7 +1,7 @@
-from typing import Optional
+from typing import Optional, List
 
 from pydantic import BaseModel
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, Relationship
 
 
 class Diagnostico(SQLModel, table=True):
