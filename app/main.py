@@ -45,7 +45,7 @@ logger.debug("Logger DEBUG activado en FastAPI")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # o ["http://localhost:5173"] si usas Vite
+    allow_origins=["http://localhost:4200","https://localhost:4200","http://127.0.0.1:4200","https://127.0.0.1:4200"],  # origenes permitidos
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
