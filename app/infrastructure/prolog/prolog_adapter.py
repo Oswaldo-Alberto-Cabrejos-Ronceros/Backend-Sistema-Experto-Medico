@@ -13,7 +13,7 @@ class PrologAdapter(SistemaExpertoPort):
         self.prolog = Prolog()
         path = Path(__file__).resolve().parent / "base_conocimiento.pl"
         ruta_prolog = path.as_posix()
-
+        print(ruta_prolog)
         if not path.exists():
             logger.error(f"Archivo Prolog no encontrado: {ruta_prolog}")
             raise FileNotFoundError(f"Archivo Prolog no encontrado: {ruta_prolog}")
@@ -22,14 +22,18 @@ class PrologAdapter(SistemaExpertoPort):
 
     def _cargar_base_conocimiento(self, ruta: str):
         try:
-            self.prolog.query(f"consult('{ruta}')")
+            list(self.prolog.query(f"consult('{ruta}')"))
+            print(f"consult('{ruta}')")
             logger.info("Base de conocimiento Prolog cargada correctamente.")
+            print("¿diagnostico/1?", list(self.prolog.query("current_predicate(diagnostico/1)")))
+
         except Exception as e:
             logger.error(f"Error al cargar base de conocimiento Prolog: {str(e)}")
             raise RuntimeError("No se pudo cargar la base de conocimiento de Prolog") from e
 
     def diagnosticar(self, sintomas: List[str]) -> DiagnosticoResponse:
         try:
+            print(sintomas)
             if not sintomas:
                 raise ValueError("Debe proporcionar al menos un síntoma")
 
@@ -37,10 +41,14 @@ class PrologAdapter(SistemaExpertoPort):
 
             for sintoma in sintomas:
                 if not sintoma.isidentifier():
+                    print(f"Sintoma inválido: {sintoma}")
                     raise ValueError(f"Sintoma inválido: {sintoma}")
                 self.prolog.assertz(f"sintoma({sintoma})")
+                print(f"sintoma({sintoma})")
 
             resultado = list(self.prolog.query("diagnostico(D)"))
+
+            print(resultado)
             logger.debug(f"Resultado Prolog: {resultado}")
 
             if resultado and isinstance(resultado[0], dict) and "D" in resultado[0]:

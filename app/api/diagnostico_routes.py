@@ -15,6 +15,7 @@ def root():
 @router.post("/diagnostico", response_model=DiagnosticoResponse)
 def diagnosticar(request: DiagnosticoRequest):
     try:
+        print(request.sintomas)
         logger.info(f"[POST /diagnostico] Request recibido: {request.sintomas}")
         servicio = PrologAdapter()
         respuesta = servicio.diagnosticar(request.sintomas)
