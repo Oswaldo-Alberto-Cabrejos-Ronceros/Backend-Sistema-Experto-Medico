@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, UTC
 from typing import Optional
 
 from pydantic import BaseModel
@@ -7,7 +7,7 @@ from sqlmodel import SQLModel, Field
 
 class HistorialDiagnostico(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    fecha:datetime = Field(default_factory=datetime.utcnow)
+    fecha:datetime = Field(default_factory=lambda: datetime.now(UTC))
     user_id:int=Field(foreign_key="user.id")
     diagnostico_id: int=Field(foreign_key="diagnostico.id")
 
@@ -16,4 +16,3 @@ class HistorialDiagnostico(SQLModel, table=True):
 class HistorialDiagnosticoRequest(BaseModel):
     user_id:int
     diagnostico_id: int
-    

@@ -20,6 +20,9 @@ class UserServiceImpl(UserService):
 
         #convertir user request a user
         new_user = User(**user.model_dump())
+        #hasheamos password
+        new_user.password=User.hash_password(user.password)
+
         with Session(engine) as session:
             session.add(new_user)
             session.commit()

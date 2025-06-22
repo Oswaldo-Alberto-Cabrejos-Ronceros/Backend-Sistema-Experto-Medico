@@ -5,6 +5,11 @@ from datetime import date
 from pydantic import BaseModel
 from sqlmodel import SQLModel, Field
 
+from passlib.context import CryptContext
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+
 class Gender(str, Enum):
     M  = "M"
     F = "F"
@@ -21,7 +26,18 @@ class User(SQLModel, table=True):
     district:str
     province:str
     department:str
+    email:str
+    password:str
 
+    #para verificar password
+    def verify_password(self, password: str) -> bool:
+        return pwd_context.verify(password, self.password)
+
+    #para hashear contraseña
+
+    @staticmethod
+    def hash_password(password: str) -> str:
+        return pwd_context.hash(password)
 
 #request
 
@@ -34,3 +50,5 @@ class UserRequest(BaseModel):
     district:str
     province:str
     department:str
+    email: str
+    password: str
