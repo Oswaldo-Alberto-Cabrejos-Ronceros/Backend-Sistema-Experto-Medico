@@ -31,7 +31,7 @@ class PrologAdapter(SistemaExpertoPort):
             logger.error(f"Error al cargar base de conocimiento Prolog: {str(e)}")
             raise RuntimeError("No se pudo cargar la base de conocimiento de Prolog") from e
 
-    def diagnosticar(self, sintomas: List[str]) -> DiagnosticoResponse:
+    def diagnosticar(self, sintomas: List[str]) -> int:
         try:
             print(sintomas)
             if not sintomas:
@@ -53,16 +53,11 @@ class PrologAdapter(SistemaExpertoPort):
 
             if resultado and isinstance(resultado[0], dict) and "D" in resultado[0]:
                 enfermedad = resultado[0]["D"]
-                recomendaciones = self._recomendaciones_por_enfermedad(enfermedad)
             else:
                 logger.warning("No se encontró un diagnóstico válido o falta la clave 'D'")
-                enfermedad = "Desconocido"
-                recomendaciones = ["Consultar con un médico", "Monitorear síntomas"]
+                enfermedad = 0
 
-            return DiagnosticoResponse(
-                enfermedad=enfermedad,
-                recomendaciones=recomendaciones
-            )
+            return enfermedad
 
         except ValueError as ve:
             logger.warning(f"Entrada inválida: {str(ve)}")

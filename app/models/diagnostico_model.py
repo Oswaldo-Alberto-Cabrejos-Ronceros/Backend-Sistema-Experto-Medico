@@ -5,5 +5,4 @@ class DiagnosticoRequest(BaseModel):
     sintomas: List[str]
 
 class DiagnosticoResponse(BaseModel):
-    enfermedad: int
-    recomendaciones: List[str]
+    diagnostico_id: int

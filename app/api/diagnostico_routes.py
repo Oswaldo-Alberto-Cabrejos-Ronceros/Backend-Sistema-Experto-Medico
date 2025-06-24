@@ -20,7 +20,7 @@ def diagnosticar(request: DiagnosticoRequest):
         servicio = PrologAdapter()
         respuesta = servicio.diagnosticar(request.sintomas)
         logger.info(f"[POST /diagnostico] Respuesta generada: {respuesta}")
-        return respuesta
+        return DiagnosticoResponse(diagnostico_id=respuesta)
     except Exception as e:
         logger.error("Error al diagnosticar: %s", str(e))
         raise
