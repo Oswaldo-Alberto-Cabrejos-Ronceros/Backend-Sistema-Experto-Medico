@@ -40,7 +40,7 @@ class PrologAdapter(SistemaExpertoPort):
             self._limpiar_hechos()
 
             for sintoma in sintomas:
-                if not sintoma.isidentifier():
+                if not sintoma.isdigit():
                     print(f"Sintoma inválido: {sintoma}")
                     raise ValueError(f"Sintoma inválido: {sintoma}")
                 self.prolog.assertz(f"sintoma({sintoma})")
