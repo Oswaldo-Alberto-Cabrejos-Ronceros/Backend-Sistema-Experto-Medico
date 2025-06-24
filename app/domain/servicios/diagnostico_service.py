@@ -12,3 +12,6 @@ class DiagnosticoService(ABC):
     @abstractmethod
     def get_all_diagnosticos(self)->Sequence[Diagnostico]:
         pass
+    @abstractmethod
+    def get_diagnostico_by_id(self, diagnostico_id:int)->Diagnostico:
+        pass

@@ -19,3 +19,7 @@ class DiagnosticoServiceImp(DiagnosticoService):
     def get_all_diagnosticos(self)->Sequence[Diagnostico]:
         with Session(engine) as session:
             return session.exec(select(Diagnostico)).all()
+    def get_diagnostico_by_id(self,diagnostico_id:int)->Diagnostico:
+        with Session(engine) as session:
+            diagnostico = session.exec((select(Diagnostico).where(Diagnostico.id==diagnostico_id))).one()
+            return diagnostico
