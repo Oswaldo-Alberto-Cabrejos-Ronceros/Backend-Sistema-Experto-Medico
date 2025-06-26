@@ -23,3 +23,7 @@ def create_historial_diagnostico(historial_diagnostico:HistorialDiagnosticoReque
 def get_historial_diagnostico_by_user_id(user_id:int):
     return historial_diagnostico_service.get_historial_by_user_id(user_id)
 
+@router.get('/historial-diagnostico/info/{user_id}')
+def get_historia_diagnostico_info_by_user_Id(user_id:int):
+    return historial_diagnostico_service.get_historial_info_by_user_id(user_id)
+

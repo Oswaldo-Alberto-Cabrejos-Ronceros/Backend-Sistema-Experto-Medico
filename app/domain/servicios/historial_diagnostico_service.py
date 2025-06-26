@@ -2,7 +2,8 @@ from abc import ABC, abstractmethod
 
 from sqlalchemy import Sequence
 
-from app.domain.entidades.historial_diagnostico import HistorialDiagnosticoRequest, HistorialDiagnostico
+from app.domain.entidades.historial_diagnostico import HistorialDiagnosticoRequest, HistorialDiagnostico, \
+    HistorialDiagnosticoInfo
 
 
 class HistorialDiagnosticoService(ABC):
@@ -14,4 +15,7 @@ class HistorialDiagnosticoService(ABC):
         pass
     @abstractmethod
     def get_historial_by_user_id(self,user_id:int)->Sequence[HistorialDiagnostico]:
+        pass
+    @abstractmethod
+    def get_historial_info_by_user_id(self, user_id:int)->Sequence[HistorialDiagnosticoInfo]:
         pass
