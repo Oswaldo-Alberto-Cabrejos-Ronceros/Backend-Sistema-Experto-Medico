@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 from sqlalchemy import Sequence
 
-from app.domain.entidades.user import User, UserRequest
+from app.domain.entidades.user import User, UserRequest, UserResponse
 
 
 class UserService(ABC):
@@ -11,4 +11,7 @@ class UserService(ABC):
         pass
     @abstractmethod
     def get_all_users(self)->Sequence[User]:
+        pass
+    @abstractmethod
+    def get_user_my_info_by_id(self,id:int)->UserResponse:
         pass

@@ -52,3 +52,17 @@ class UserRequest(BaseModel):
     department:str
     email: str
     password: str
+
+#dto UserResponse
+
+class UserResponse(BaseModel):
+    id:int
+    names:str
+    lastnames:str
+    gender:Gender
+    birthdate:date
+    address:str
+    district:str
+    province:str
+    department:str
+    email:str

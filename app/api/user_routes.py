@@ -18,3 +18,7 @@ def get_users():
 @router.post("/users",response_model=User)
 def create_users(user: UserRequest):
     return user_service.create_user(user)
+
+@router.get("/users/my-info/{id}")
+def get_user_my_info(id: int):
+    return user_service.get_user_my_info_by_id(id)
