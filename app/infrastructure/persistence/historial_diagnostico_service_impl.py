@@ -46,6 +46,6 @@ class HistorialDiagnosticoServiceImpl(HistorialDiagnosticoService):
 
     def _convertir_historial_diagnostico_historial_info(self,historial:HistorialDiagnostico)->HistorialDiagnosticoInfo:
         diagnosis:Diagnostico = self.diagnosisService.get_diagnostico_by_id(historial.diagnostico_id)
-        return HistorialDiagnosticoInfo(id=historial.id, fecha=historial.fecha.date(),hora=historial.fecha.time(),diagnosis_id=diagnosis.id,diagnosis_name=diagnosis.name, diagnosis_url_image=diagnosis.image_url )
+        return HistorialDiagnosticoInfo(id=historial.id, fecha=historial.fecha.date(),hora=historial.fecha.time().strftime("%H:%M"),diagnosis_id=diagnosis.id,diagnosis_name=diagnosis.name, diagnosis_url_image=diagnosis.image_url )
 
 

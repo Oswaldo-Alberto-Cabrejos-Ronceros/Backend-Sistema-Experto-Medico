@@ -1,4 +1,8 @@
 fastapi
 uvicorn[standard]
 pyswip
-python-dotenv
+python-dote
+pytz
+pyjwt
+tzdata
+sqlmodel

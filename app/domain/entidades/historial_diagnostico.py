@@ -1,4 +1,4 @@
-from datetime import datetime, UTC, date, time
+from datetime import datetime, UTC, date
 from typing import Optional
 
 from pydantic import BaseModel
@@ -20,7 +20,7 @@ class HistorialDiagnosticoRequest(BaseModel):
 class HistorialDiagnosticoInfo(BaseModel):
     id:int
     fecha:date
-    hora:time
+    hora:str
     diagnosis_id:int
     diagnosis_name:str
     diagnosis_url_image:str
