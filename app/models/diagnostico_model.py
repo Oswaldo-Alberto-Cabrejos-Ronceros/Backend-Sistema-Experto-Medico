@@ -6,3 +6,7 @@ class DiagnosticoRequest(BaseModel):
 
 class DiagnosticoResponse(BaseModel):
     diagnostico_id: int
+
+class DiagnosticoSessionRequest(BaseModel):
+    diagnosticoRequest:DiagnosticoRequest
+    user_id:int
