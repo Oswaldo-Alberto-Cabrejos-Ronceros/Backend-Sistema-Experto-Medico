@@ -46,7 +46,7 @@ class PrologAdapter(SistemaExpertoPort):
                 self.prolog.assertz(f"sintoma({sintoma})")
                 print(f"sintoma({sintoma})")
 
-            resultado = list(self.prolog.query("diagnostico(D)"))
+            resultado = list(self.prolog.query("diagnostico_mas_probable(D)"))
 
             print(resultado)
             logger.debug(f"Resultado Prolog: {resultado}")
