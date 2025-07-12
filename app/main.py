@@ -1,7 +1,16 @@
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
-from app.api import diagnostico_routes, user_routes, diagnosticos_routes,sintomas_routes,recomendacion_diagnostico_routes,historial_diagnostico_routes,auht_routes
+from app.api import (
+    diagnostico_routes,
+    user_routes,
+    diagnosticos_routes,
+    sintomas_routes,
+    recomendacion_diagnostico_routes,
+    historial_diagnostico_routes,
+    auht_routes,
+    posibles_causas_routes
+)
 import logging
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -27,6 +36,8 @@ app = FastAPI(lifespan=lifespan)
 app.include_router(diagnostico_routes.router)
 
 app.include_router(user_routes.router)
+
+app.include_router(posibles_causas_routes.router)
 
 app.include_router(diagnosticos_routes.router)
 
